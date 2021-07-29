@@ -92,3 +92,36 @@ n := int(m)
 d := 10 * time.Second
         //↓
 type Duration int64
+
+//メソッド
+//■レシーバと紐つけられた関数
+//データとそれに対する操作を紐つけるために用いる
+//ドッドでメソッドにアクセスする
+
+type Hex int
+func (h Hex) String() string{
+	return fmt.Sprintf("%x", int(h))
+}
+
+//100をHex型として代入
+var hex Hex = 100
+//stringメソッドを呼び出す
+fmt.Println(hex.String())
+
+//☆レシーバの値を変えたい場合はポインタに変更する
+
+//メソッド値
+//■メソッドも値として扱える
+//レシーバは束縛された状態
+type Hex int
+func (h Hex) String() string {
+	return fmt.Sprintf("%x", int(n))
+}
+
+func main() {
+	var hex Hex = 100
+	f := hex.String
+	fmrt.Println(f())
+}
+
+//レシーバは引数と同じイメージ
